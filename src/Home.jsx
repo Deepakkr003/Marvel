@@ -1,0 +1,73 @@
+import react from 'react';
+import CinematicCardStack from './components/CinematicCardStack.jsx';
+
+export default function Home() {
+
+  return (
+    <main className="min-h-screen bg-black text-white">
+      <div className="pointer-events-none fixed inset-0 opacity-40">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,rgba(255,0,0,0.18),transparent_40%),radial-gradient(circle_at_80%_30%,rgba(255,255,255,0.06),transparent_35%),radial-gradient(circle_at_50%_80%,rgba(255,0,0,0.10),transparent_45%)]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/65 to-black" />
+
+      </div>
+
+      {/* hero */}
+      <section className="relative mx-auto max-w-6xl px-6 pt-16 pb-10">
+        <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+          <img
+            src="/posters/marvel_logo.jpg" // put your logo in /public/marvel-logo.png
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover object-contain opacity-[0.06] blur-[0.2px]"
+          />
+          {/* fade/mask so it feels cinematic */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black via-black/70 to-black" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/80" />
+        </div>
+        <div className="flex flex-col gap-10 md:flex-row md:items-end md:justify-between">
+          <div className="max-w-2xl">
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs text-white/70">
+              <span className="h-2 w-2 rounded-full bg-red-500" />
+              Recommended path: Chronological Timeline
+            </div>
+
+            <h1 className="mt-6 text-4xl font-semibold leading-tight md:text-6xl">
+              Your Marvel watch journey,
+              <span className="block text-white/70">done properly.</span>
+            </h1>
+
+            <p className="mt-4 text-base text-white/65">
+              Explore the timeline, jump into sagas, or hop universes in the
+              Multiverse. Posters, previews, watched progress, and a clean
+              “what’s next” flow.
+            </p>
+
+            <div className="mt-6 flex flex-wrap gap-3 text-xs text-white/55">
+              <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1">
+                Watch Trailer previews
+              </span>
+              <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1">
+                Mark watched ✓
+              </span>
+              <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1">
+                Phase progress
+              </span>
+              <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1">
+                Check what’s next
+              </span>
+            </div>
+          </div>
+
+          {/* right-side “mini poster stack” */}
+          <CinematicCardStack
+            items={[
+              { src: "/posters/the-avengers-2012.jpg", alt: "The Avengers" },
+              { src: "/posters/iron-man-2008.jpg", alt: "Iron Man" },
+              { src: "/posters/blade-1998.jpg", alt: "Blade" },
+            ]}
+          />
+        </div>
+      </section>
+      
+    </main>
+  )
+}
