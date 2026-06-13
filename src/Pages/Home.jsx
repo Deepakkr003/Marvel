@@ -1,5 +1,23 @@
 import react from 'react';
-import CinematicCardStack from './components/CinematicCardStack.jsx';
+import CinematicCardStack from '../components/CinematicCardStack';
+
+function pickFeatured(): Title[] {
+  const picks = [
+    "iron-man-2008",
+    "the-avengers-2012",
+    "loki-s1",
+    "spider-man-no-way-home-2021",
+    "avengers-endgame-2019",
+    "deadpool-and-wolverine-2024",
+    "wandavision",
+    "spider-man-2002",
+  ];
+
+  const byId = new Map(titles.map((t) => [t.id, t] as const));
+  const featured = picks.map((id) => byId.get(id)).filter(isTitle);
+
+  return featured.length >= 4 ? featured.slice(0, 8) : titles.slice(0, 8);
+}
 
 export default function Home() {
 
@@ -65,6 +83,31 @@ export default function Home() {
               { src: "/posters/blade-1998.jpg", alt: "Blade" },
             ]}
           />
+        </div>
+      </section>
+
+      {/* featured */}
+      <section className="relative mx-auto max-w-6xl px-6 pb-16">
+        <div className="mb-5 flex items-end justify-between">
+          <h2 className="text-lg font-semibold text-white/90">Featured</h2>
+          <span className="text-sm text-white/60">
+            Hover to the Marvel Boat
+          </span>
+        </div>
+
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+          {featured.map((t, idx) => (
+            <PosterCard
+              key={t.id}
+              id={t.id}
+              title={t.name}
+              badge={t.type.toUpperCase()}
+              posterSrc={t.posterSrc}
+              href={`/title/${t.id}`}
+              priority={idx < 2}
+              trailerMutedPreviewSrc={t.trailerMutedPreviewSrc}
+            />
+          ))}
         </div>
       </section>
       
