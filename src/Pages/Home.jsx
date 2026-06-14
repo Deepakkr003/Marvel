@@ -2,6 +2,8 @@ import react from 'react';
 import CinematicCardStack from '../components/CinematicCardStack';
 import PosterCard from '../components/PosterCard';
 import { titles } from "../data/titles";
+import { useState } from "react";
+import TitleDetailsModal from "../components/TitleDetails";
 
 function pickFeatured() {
   const picks = [
@@ -25,6 +27,9 @@ function pickFeatured() {
 }
 
 export default function Home() {
+  const [selectedTitle, setSelectedTitle] = useState(null);
+  const [modalOpen, setModalOpen] = useState(false);
+
   const featured = pickFeatured();
 
   return (
@@ -109,13 +114,25 @@ export default function Home() {
               title={t.name}
               badge={t.type.toUpperCase()}
               posterSrc={t.posterSrc}
-              href={`/title/${t.id}`}
               priority={idx < 2}
               trailerMutedPreviewSrc={t.trailerMutedPreviewSrc}
+              onClick={() => {
+                setSelectedTitle(t);
+                setModalOpen(true);
+              }}
             />
           ))}
         </div>
       </section>
+      <TitleDetailsModal
+        open={modalOpen}
+        title={selectedTitle}
+        isWatched={false}
+        hasNext={true}
+        onClose={() => setModalOpen(false)}
+        onToggleWatched={() => {}}
+        onGoNext={() => {}}
+      />
       
     </main>
   )
