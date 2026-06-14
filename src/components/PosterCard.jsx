@@ -7,7 +7,6 @@ export default function PosterCard({
   id,
   title,
   subtitle,
-  onClick,
   posterSrc,
   badge,
   href,
@@ -92,11 +91,11 @@ export default function PosterCard({
       </button>
 
       {/* Card Link */}
-      <div
-        onClick={onClick}
+      <Link
+        to={href}
         onMouseMove={onMove}
         onMouseLeave={onLeave}
-        className="block cursor-pointer"
+        className="block"
       >
         <motion.div
           className={[
@@ -176,7 +175,7 @@ export default function PosterCard({
             </p>
           </div>
         </motion.div>
-      </div>
+      </Link>
     </motion.div>
   );
 }

@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Home from "./pages/Home";
-import TitleDetails from "./components/TitleDetails";
+import Home from "./Pages/Home";
+import TitlePage from "./Pages/title/TitlePage";
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
 
         <Route
           path="/title/:id"
-          element={<TitleDetails />}
+          element={<TitlePage />}
         />
       </Routes>
     </BrowserRouter>

@@ -5,6 +5,10 @@ const yearFromId = (id) => {
   return m ? Number(m[1]) : undefined;
 };
 
+// ------------------------------------------------------------
+// Marvel Cinematic Multiverse Watch Order (from your screenshots)
+// ------------------------------------------------------------
+
 export const titles = [
   // -----------------------
   // Blade (Earth-26320)
