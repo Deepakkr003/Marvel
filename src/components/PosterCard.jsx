@@ -1,6 +1,7 @@
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useMemo, useState } from "react";
+import { useWatchedStore } from "../store/usewatchedStore.js";
 
 export default function PosterCard({
   id,
@@ -13,6 +14,9 @@ export default function PosterCard({
   trailerMutedPreviewSrc,
 }){
   const [loaded, setLoaded] = useState(false);
+
+  const isWatched = useWatchedStore((s) => !!s.watched[id]);
+  const toggleWatched = useWatchedStore((s) => s.toggleWatched);
 
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
@@ -47,6 +51,45 @@ export default function PosterCard({
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.99 }}
     >
+
+      {/* Glow Effect */}
+      <div
+        id={glowId}
+        className="pointer-events-none absolute -inset-3 rounded-2xl opacity-0 blur-2xl transition-opacity duration-300 group-hover:opacity-100"
+        style={{
+          background: isWatched
+            ? "radial-gradient(650px circle at 50% 50%, rgba(34,197,94,0.28), rgba(34,197,94,0.06), transparent 60%)"
+            : "radial-gradient(650px circle at 50% 50%, rgba(255,0,0,0.22), rgba(255,0,0,0.05), transparent 60%)",
+        }}
+      />
+
+      {/* Watched Button */}
+      <button
+        type="button"
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          toggleWatched(id);
+        }}
+        className={[
+          "absolute right-3 top-3 z-30 grid h-10 w-10 place-items-center rounded-full border backdrop-blur transition",
+          isWatched
+            ? "border-green-400/30 bg-green-500/15 hover:bg-green-500/20"
+            : "border-white/15 bg-black/40 hover:bg-black/55",
+        ].join(" ")}
+        aria-label={isWatched ? "Marked watched" : "Mark as watched"}
+        title={isWatched ? "Watched" : "Mark watched"}
+      >
+        <span
+          className={[
+            "text-lg leading-none",
+            isWatched ? "text-green-300" : "text-white/85",
+          ].join(" ")}
+        >
+          ✓
+        </span>
+      </button>
+
       {/* Card Link */}
       <Link
         to={href}
@@ -125,11 +168,11 @@ export default function PosterCard({
               </p>
             )}
 
-            {/* <p className="mt-3 text-xs text-white/55">
+            <p className="mt-3 text-xs text-white/55">
               {isWatched
                 ? "Completed • Nice."
                 : "Hover to preview • Click for details"}
-            </p> */}
+            </p>
           </div>
         </motion.div>
       </Link>
