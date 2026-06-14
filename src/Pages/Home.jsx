@@ -1,7 +1,9 @@
 import react from 'react';
 import CinematicCardStack from '../components/CinematicCardStack';
+import PosterCard from '../components/PosterCard';
+import { titles } from "../data/titles";
 
-function pickFeatured(): Title[] {
+function pickFeatured() {
   const picks = [
     "iron-man-2008",
     "the-avengers-2012",
@@ -13,13 +15,17 @@ function pickFeatured(): Title[] {
     "spider-man-2002",
   ];
 
-  const byId = new Map(titles.map((t) => [t.id, t] as const));
-  const featured = picks.map((id) => byId.get(id)).filter(isTitle);
+  const byId = new Map(
+    titles.map((t) => [t.id, t])
+  );
+
+  const featured = picks.map((id) => byId.get(id)).filter(Boolean);
 
   return featured.length >= 4 ? featured.slice(0, 8) : titles.slice(0, 8);
 }
 
 export default function Home() {
+  const featured = pickFeatured();
 
   return (
     <main className="min-h-screen bg-black text-white">
