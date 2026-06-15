@@ -3,6 +3,7 @@ import CinematicCardStack from '../components/CinematicCardStack';
 import PosterCard from '../components/PosterCard';
 import { titles } from "../data/titles";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function pickFeatured() {
   const picks = [
@@ -25,8 +26,10 @@ function pickFeatured() {
   return featured.length >= 4 ? featured.slice(0, 8) : titles.slice(0, 8);
 }
 
+
 export default function Home() {
   const featured = pickFeatured();
+  const navigate = useNavigate();
 
   return (
     <main className="min-h-screen bg-black text-white">
@@ -65,6 +68,15 @@ export default function Home() {
               Multiverse. Posters, previews, watched progress, and a clean
               “what’s next” flow.
             </p>
+
+            <div className="mt-8 flex flex-wrap gap-3">
+              <button
+                onClick={() => navigate("/timeline")}
+                className="rounded-xl bg-red-600 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-red-600/20 transition hover:bg-red-500"
+              >
+                The Timeline
+              </button>
+            </div>
 
             <div className="mt-6 flex flex-wrap gap-3 text-xs text-white/55">
               <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1">
