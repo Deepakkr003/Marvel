@@ -1,7 +1,7 @@
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useMemo, useState } from "react";
-import { useWatchedStore } from "../store/usewatchedStore.js";
+import { useWatchedStore } from "../store/useWatchedStore.js";
 
 export default function PosterCard({
   id,
@@ -100,7 +100,7 @@ export default function PosterCard({
         <motion.div
           className={[
             "relative overflow-hidden rounded-2xl border bg-zinc-950/60 shadow-xl",
-            //isWatched ? "border-green-400/20" : "border-white/10",
+            isWatched ? "border-green-400/20" : "border-white/10",
           ].join(" ")}
           style={{
             rotateX,
