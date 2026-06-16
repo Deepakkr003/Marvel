@@ -53,7 +53,7 @@ export default function SagasPage() {
 
         <p className="mt-3 max-w-2xl text-white/65">
           Watch by narrative arcs instead of strict time.
-          Cinematic tiles, progress, and what's next within
+          Cinematic tiles, progress, and “what’s next” within
           each saga.
         </p>
 
@@ -62,7 +62,7 @@ export default function SagasPage() {
           {SAGAS.map((s) => (
             <Link
               key={s.key}
-              to={`/sagas/${s.key}`}
+              to={`/sagas/${encodeURIComponent( s.key )}`}
               className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/5"
             >
               {/* Background Poster */}
