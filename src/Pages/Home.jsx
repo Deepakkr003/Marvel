@@ -84,6 +84,14 @@ export default function Home() {
               >
                 Explore Sagas
               </button>
+
+              <button
+                onClick={() => navigate("/multiverse")}
+                className="rounded-xl border border-white/12 bg-white/5 px-5 py-3 text-sm font-semibold text-white/90 transition hover:bg-white/10"
+              >
+                Explore Multiverse
+              </button>
+
             </div>
 
             <div className="mt-6 flex flex-wrap gap-3 text-xs text-white/55">
