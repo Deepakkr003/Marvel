@@ -5,6 +5,7 @@ import { titles } from "../data/titles";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+
 function pickFeatured() {
   const picks = [
     "iron-man-2008",
@@ -75,6 +76,13 @@ export default function Home() {
                 className="rounded-xl bg-red-600 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-red-600/20 transition hover:bg-red-500"
               >
                 The Timeline
+              </button>
+
+              <button
+                onClick={() => navigate("/sagas")}
+                className="rounded-xl border border-white/12 bg-white/5 px-5 py-3 text-sm font-semibold text-white/90 transition hover:bg-white/10"
+              >
+                Explore Sagas
               </button>
             </div>
 
