@@ -6,6 +6,7 @@ import Timeline from "./Pages/Timeline";
 import SagasPage from "./Pages/Sagas";
 import SagaDetailPage from "./Pages/SagaDetailPage";
 import MultiversePage from "./Pages/Multiverse";
+import MultiVerseDetailPage from "./Pages/MultiVerseDetailPage";
 
 function App() {
   return (
@@ -22,6 +23,8 @@ function App() {
         <Route path="/sagas/:saga" element={<SagaDetailPage />} />
 
         <Route path="/multiverse" element={<MultiversePage />} />
+
+        <Route path="/multiverse/:universe" element={<MultiVerseDetailPage />} />
       </Routes>
     </BrowserRouter>
   );
