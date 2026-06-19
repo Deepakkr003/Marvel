@@ -4,6 +4,7 @@ import PosterCard from '../components/PosterCard';
 import { titles } from "../data/titles";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import ContinueJourney from '../components/ContinueJourney';
 
 
 function pickFeatured() {
@@ -119,6 +120,11 @@ export default function Home() {
             ]}
           />
         </div>
+      </section>
+
+      {/* Continue Journey (your component) */}
+      <section className="relative mx-auto max-w-6xl px-6 pb-4">
+        <ContinueJourney />
       </section>
 
       {/* featured */}

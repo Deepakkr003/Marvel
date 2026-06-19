@@ -7,6 +7,7 @@ import SagasPage from "./Pages/Sagas";
 import SagaDetailPage from "./Pages/SagaDetailPage";
 import MultiversePage from "./Pages/Multiverse";
 import MultiVerseDetailPage from "./Pages/MultiVerseDetailPage";
+import Journey from "./Pages/Journey";
 
 function App() {
   return (
@@ -25,6 +26,8 @@ function App() {
         <Route path="/multiverse" element={<MultiversePage />} />
 
         <Route path="/multiverse/:universe" element={<MultiVerseDetailPage />} />
+
+        <Route path="/journey" element={<Journey />} />
       </Routes>
     </BrowserRouter>
   );
