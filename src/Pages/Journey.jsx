@@ -129,7 +129,9 @@ export default function Journey() {
   const hasNext = !!nextTitle;
 
   return (
-    <main className="relative h-screen w-full overflow-hidden bg-black text-white">
+    <main className="relative h-screen w-full bg-black text-white overflow-hidden">
+      {" "}
+      {/* Ensure full screen and no scroll on body if using ScrollControls inside */}
       {/* 3D Scene */}
       <JourneyScene
         titles={ordered}
@@ -144,7 +146,7 @@ export default function Journey() {
       />
 
       {/* Overlay UI */}
-      <div className="pointer-events-none absolute inset-0 z-10 overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none z-10 overflow-hidde">
 
         {/* Header */}
         <motion.div
@@ -159,31 +161,17 @@ export default function Journey() {
           }}
           animate={
             !started
-              ? {
-                  top: "40%",
-                  left: "50%",
-                  x: "-50%",
-                  y: "-50%",
-                  scale: 1.2,
-                }
-              : {
-                  top: 0,
-                  left: 0,
-                  x: 0,
-                  y: 0,
-                  scale: 0.8,
-                }
+              ? { top: "40%", left: "50%", x: "-50%", y: "-50%", scale: 1.2 }
+              : { top: 0, left: 0, x: 0, y: 0, scale: 0.8 }
           }
-          transition={{
-            duration: 0.8,
-            ease: "easeInOut",
-          }}
+          transition={{ duration: 0.8, ease: "easeInOut" }}
         >
           {!started && (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="mb-6 flex flex-col items-center space-y-4 text-center"
+              exit={{ opacity: 0 }}
+              className="mb-6 flex flex-col items-center text-center space-y-4"
             >
               <div className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/5 px-4 py-2 text-xs text-white/70 backdrop-blur-md">
                 <span className="h-2 w-2 rounded-full bg-red-500" />
@@ -195,14 +183,14 @@ export default function Journey() {
           <div className={!started ? "text-center" : "text-left"}>
             <button
               onClick={() => navigate("/")}
-              className="pointer-events-auto mb-4 inline-block text-sm text-white/60 hover:text-white/85"
+              className="mb-4 text-sm text-white/60 hover:text-white/85 pointer-events-auto inline-block"
             >
               ← {started ? "Exit" : "Back to Home"}
             </button>
 
             <motion.h1
               layout="position"
-              className="bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text text-4xl font-bold text-transparent md:text-6xl"
+              className="text-4xl font-bold bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text text-transparent md:text-6xl"
             >
               Cosmic Journey
             </motion.h1>
@@ -221,8 +209,7 @@ export default function Journey() {
             {!started && (
               <>
                 <motion.p className="mx-auto mt-4 max-w-lg text-sm text-white/65">
-                  Clear the path level-by-level.
-                  Your next step is always highlighted.
+                  Clear the path level-by-level.Your next step is always highlighted.
                   Begin your journey through the multiverse.
                 </motion.p>
 
@@ -239,7 +226,7 @@ export default function Journey() {
           </div>
         </motion.div>
 
-        {/* HUD */}
+        {/* Stats / HUD (Only visible after start) */}
         <motion.div
           initial={{ opacity: 0, x: 100 }}
           animate={
@@ -314,6 +301,9 @@ export default function Journey() {
         }}
         onGoNext={() => {
           if (!nextTitle) return;
+
+          // STRICT: do not allow skipping beyond the current campaign step
+          // If nextTitle is not the currentOrder AND it's not already watched, block it.
 
           const isLocked =
             !watched[nextTitle.id] &&

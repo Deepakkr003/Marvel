@@ -307,6 +307,7 @@ export default function JourneyScene(props) {
   return (
     <div className="w-full h-screen bg-black">
       <Canvas
+        dpr={[1, 2]}
         camera={{ position: [0, 5, 10], fov: 60, far: 2000,
         }}
       >
