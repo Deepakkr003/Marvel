@@ -8,6 +8,7 @@ import SagaDetailPage from "./Pages/SagaDetailPage";
 import MultiversePage from "./Pages/Multiverse";
 import MultiVerseDetailPage from "./Pages/MultiVerseDetailPage";
 import Journey from "./Pages/Journey";
+import LegalPage from "./Pages/legalpage";
 
 import SoundToggle from "./components/SoundToggle";
 
@@ -47,6 +48,8 @@ function App() {
           />
 
           <Route path="/journey" element={<Journey />} />
+
+          <Route path="/legal" element={<LegalPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
