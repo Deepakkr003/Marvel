@@ -11,6 +11,7 @@ import Journey from "./Pages/Journey";
 import LegalPage from "./Pages/legalpage";
 
 import SoundToggle from "./components/SoundToggle";
+import CommandPalette from "./components/CommandPalette";
 
 function Layout() {
   return (
