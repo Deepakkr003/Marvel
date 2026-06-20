@@ -9,6 +9,10 @@ import PosterCard from "../components/PosterCard";
 import { titles } from "../data/titles";
 import { useWatchedStore } from "../store/useWatchedStore";
 
+import { useEffect, useState } from "react";
+import Loading from "../components/Loading";
+import { devDelay } from "../lib/devDelay";
+
 function pct(done, total) {
   if (total <= 0) return 0;
   return Math.round((done / total) * 100);
@@ -39,8 +43,10 @@ function groupByPhase(items) {
 }
 
 export default function TimelinePage() {
-  const [searchParams] = useSearchParams();
 
+  const [ready, setReady] = useState(false);
+  const [searchParams] = useSearchParams();
+  
   const watched = useWatchedStore(
     (state) => state.watched
   );
@@ -130,6 +136,20 @@ export default function TimelinePage() {
 
     return null;
   }, [phaseStats]);
+
+  useEffect(() => {
+    async function init() {
+      await devDelay(4000);
+      setReady(true);
+    }
+
+    init();
+  }, []);
+
+  if (!ready) {
+    return <Loading label="Loading Timeline" />;
+  }
+
 
   return (
     <main className="min-h-screen bg-black text-white">

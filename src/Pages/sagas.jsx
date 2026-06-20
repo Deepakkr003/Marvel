@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom";
 import { titles } from "../data/titles";
+import { useEffect, useState } from "react";
+import Loading from "../components/Loading";
+import { devDelay } from "../lib/devDelay";
 
 const SAGAS = [
   {
@@ -23,6 +26,21 @@ const SAGAS = [
 ];
 
 export default function SagasPage() {
+  const [ready, setReady] = useState(false);
+
+  // useEffect(() => {
+  //   async function init() {
+  //     await devDelay(2000);
+  //     setReady(true);
+  //   }
+
+  //   init();
+  // }, []);
+
+  // if (!ready) {
+  //   return <Loading label="Loading Sagas" />;
+  // }
+
   const counts = titles.reduce((acc, t) => {
     acc[t.saga] = (acc[t.saga] ?? 0) + 1;
     return acc;

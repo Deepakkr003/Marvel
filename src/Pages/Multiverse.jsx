@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom";
 import { titles } from "../data/titles";
+import { useEffect, useState } from "react";
+import Loading from "../components/Loading";
+import { devDelay } from "../lib/devDelay";
 
 function buildUniverseCards() {
   const map = new Map();
@@ -59,6 +62,21 @@ function buildUniverseCards() {
 
 export default function MultiversePage() {
   const cards = buildUniverseCards();
+
+  const [ready, setReady] = useState(false);
+  
+  // useEffect(() => {
+  //   async function init() {
+  //     await devDelay(2000);
+  //     setReady(true);
+  //   }
+
+  //   init();
+  // }, []);
+
+  // if (!ready) {
+  //   return <Loading label="Loading Universes" />;
+  // }
 
   return (
     <main className="min-h-screen bg-black text-white">
