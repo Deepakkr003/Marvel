@@ -139,7 +139,7 @@ export default function TimelinePage() {
 
   useEffect(() => {
     async function init() {
-      await devDelay(4000);
+      await devDelay(2000);
       setReady(true);
     }
 
