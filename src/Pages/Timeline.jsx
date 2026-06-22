@@ -12,6 +12,7 @@ import { useWatchedStore } from "../store/useWatchedStore";
 import { useEffect, useState } from "react";
 import Loading from "../components/Loading";
 import { devDelay } from "../lib/devDelay";
+import { useLocation } from "react-router-dom";
 
 function pct(done, total) {
   if (total <= 0) return 0;
@@ -46,6 +47,7 @@ export default function TimelinePage() {
 
   const [ready, setReady] = useState(false);
   const [searchParams] = useSearchParams();
+  const location = useLocation();
   
   const watched = useWatchedStore(
     (state) => state.watched
@@ -145,6 +147,13 @@ export default function TimelinePage() {
 
     init();
   }, []);
+
+  useEffect(() => {
+    if (location.search) {
+      window.history.replaceState({}, "", location.pathname);
+    }
+  }, [location]);
+
 
   if (!ready) {
     return <Loading label="Loading Timeline" />;

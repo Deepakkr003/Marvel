@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import Home from "./Pages/Home";
 import TitlePage from "./Pages/title/TitlePage";
 import Timeline from "./Pages/Timeline";
-import SagasPage from "./Pages/sagas";
+import SagasPage from "./Pages/Sagas";
 import SagaDetailPage from "./Pages/SagaDetailPage";
 import MultiversePage from "./Pages/Multiverse";
 import MultiVerseDetailPage from "./Pages/MultiVerseDetailPage";
